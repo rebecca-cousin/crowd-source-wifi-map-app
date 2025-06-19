@@ -10,12 +10,26 @@ osm.addTo(map);
 
 
 //Live Location
+var marker = L.marker([0, 0]).remove();
+var accuracyCircle = L.circle([0, 0], { radius: 0 }).remove();
+
 navigator.geolocation.watchPosition(success, error);
 
 function success(pos) {
     const lat = pos.coords.latitude;
     const long = pos.coords.longitude;
     const accuracy = pos.coords.accuracy / 5; 
+
+     marker
+        .setLatLng([lat, long])
+        .addTo(map);
+
+     accuracyCircle
+        .setLatLng([lat, long])
+        .setRadius(accuracy)
+        .addTo(map);
+
+   map.fitBounds(accuracyCircle.getBounds());
 
     if (map.hasLayer(accuracyCircle)) {
         accuracyCircle
@@ -28,14 +42,14 @@ function success(pos) {
 function error(err) {
     if (err.code === 1) {
         alert("accept geolocation access")
+
     } else {
         alert("cannot get current location")
     }
 }
 
-//Adding MARKERS
-        var accuracyCircle = L.circle([0, 0], { radius: 0 });
-        accuracyCircle.addTo(map);
+
+ 
             
 //Tile Layer
 var Thunderforest_Transport = L.tileLayer('https://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}{r}.png?apikey={apikey}', {
@@ -82,10 +96,9 @@ var baseLayers = {
 };
 
 var overlays = {
-  
-    "Live Accuracy": accuracyCircle,
+    "marker": marker,
+    "Live Accuracy": accuracyCircle
 };
-
 L.control.layers(baseLayers, overlays).addTo(map);
 
 
