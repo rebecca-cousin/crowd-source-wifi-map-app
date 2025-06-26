@@ -102,5 +102,46 @@ var overlays = {
 L.control.layers(baseLayers, overlays).addTo(map);
 
 
+// Initialize Mini Map
+const miniMap = L.map('mini-map', {
+    zoomControl: true,
+    attributionControl: false,
+    dragging: true,
+    tap: false
+}).setView([6.5244, 3.3792], 13); // Default to Lagos coordinates
 
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(miniMap);
+
+let locationMarker;
+
+// Handle map clicks
+miniMap.on('click', function(e) {
+    if (locationMarker) {
+        miniMap.removeLayer(locationMarker);
+    }
+    
+    locationMarker = L.marker(e.latlng, {
+        icon: L.icon({
+            iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41]
+        })
+    }).addTo(miniMap);
+    
+    // Update form with coordinates
+    document.getElementById('address').value = `${e.latlng.lat.toFixed(4)}, ${e.latlng.lng.toFixed(4)}`;
+});
+
+// Sync with city selection
+document.getElementById('city').addEventListener('change', function() {
+    const cities = {
+        'lagos': [6.5244, 3.3792],
+        'port-harcourt': [4.8156, 7.0498],
+        'delta': [5.5320, 5.8980]
+    };
+    
+    miniMap.setView(cities[this.value], 13);
+});
  

@@ -3,38 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>crowd source wifi map</title>
+    <title>Crowd Source WiFi Map</title>
 
-
-                                 <!-- Leaflet CSS -->
+                               <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-                                <!-- MY CSS -->
-    <link rel ="stylesheet" href = "css/map.css"/> 
-
-                                 <!-- MAP SEARCHER -->
+                               <!-- MAP SEARCHER -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 
+
+                                <!-- MY CSS -->
+    <link rel = "stylesheet" href = "css/map.css"/> 
+    <link rel = "stylesheet" href = "css/form-progressBar.css">
+    <link rel = "stylesheet" href = "css/form.css">
+    <link rel = "stylesheet" href = "css/map.css">
+    
 </head>
 <body>
+    <div class="app-container">
+        <!-- Progress Navigation -->
+       
+                  <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-step active">
+                <div class="step-number">1</div>
+                <div class="step-label">User Profile</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">2</div>
+                <div class="step-label">WiFi Basics</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">3</div>
+                <div class="step-label">Location</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-number">4</div>
+                <div class="step-label">Confirm</div>
+            </div>
+        </div>
+    </div>
 
-         <div id = "map">
+        
+                             <!-- Form Sections -->
+        <div class="form-panel">
 
-         </div>
+                             <!-- Human Profile Section -->
+            <div class="form-section active" id="human-profile">
+                <h2>Tell us about yourself</h2>
+                <form>
+            
+                    <div class="form-group">
+                        <label for="fname"> First-Name: </label><br>
+                        <input type="text" id="fname" name="fname" placeholder="Eg: Ayeyemi" required><br>
+                    </div>
 
-</body>
-</html>
 
-                                  <!-- MAP SEARCHER -->
+                    <div class="form-group">
+                        <label for="lname"> Last-Name: </label><br>
+                        <input type="text" id="lname" name="lname" placeholder="Eg: Ayeni" required><br>      
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="email"> Email: </label><br>
+                        <input type="email" id="email" name="email" placeholder="Eg: ayeni@gmail.com" required><br>      
+                    </div>
+
+                </form>
+            </div>
+            
+                             <!-- WiFi Basics Section -->
+            <div class="form-section" id="wifi-basics">
+                <h2>WiFi Details</h2>
+                <form>
+
+                   <div class="form-group">
+                        <label for="ssid"> WI-FI Name: </label><br>
+                        <input type="text" id="ssid" name="ssid" placeholder="Eg: ayeyemi_EXT" required><br>        
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="Pword"> WI-FI Password: </label><br>
+                        <input type="password" id="Pword" name="Pword" placeholder="Eg: password123@" required><br>
+                    </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="security">Security Type</label>
+                       <select id="security">
+            <option value="open" title="No password - use caution with sensitive data">Open</option>
+            <option value="wpa2" title="Password protected - standard security">WPA2</option>
+            <option value="wpa3" title="Password protected - strongest security">WPA3</option>
+                       </select>
+                    </div>
+
+                  <!-- Location Details Section -->
+<div class="form-section" id="location">
+    <h2>Location Information</h2>
+    <form>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="city">City</label>
+                <select id="city">
+                    <option value="lagos">Lagos</option>
+                    <option value="port-harcourt">Port Harcourt</option>
+                    <option value="delta">Delta</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="address">Address (optional)</label>
+                <input type="text" id="address">
+            </div>
+        </div>
+        
+        <div class="form-group map-container">
+            <label>Set Location on Map</label>
+            <div id="mini-map">
+                <!-- Map will render here -->
+                <div class="map-placeholder">
+                    <p>Loading map...</p>
+                     <div class="map-panel">
+                        <div id="map"></div>
+        </div>
+                </div>
+            </div>
+            <small>Click on the map to set marker position</small>
+        </div>
+        
+        <div class="form-nav-buttons">
+            <button type="button" class="btn btn-prev">Back</button>
+            <button type="button" class="btn btn-next">Next</button>
+        </div>
+    </form>
+</div>
+                           
+                </form>
+            </div>
+            
+                             
+            </div>
+        </div>
+
+                               
+    </div>
+
+                                 <!-- MAP SEARCHER -->
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-
 
                                  <!-- Leaflet CSS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 <script src = "js/map.js"></script>
+<script src = "js/app.js"></script>
 
-
- 
+</body>
+</html>
