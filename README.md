@@ -52,9 +52,7 @@ wifi-spot-mapper/
 
 📌 *Inspired by the need for free internet access!*  
 
---- 
-
-*(Replace placeholder links with your actual repo/contact!)*  
+---  
 
 ### 🎯 Why This Matters  
 This project helps **travelers, remote workers, and students** find reliable WiFi spots worldwide. Crowdsourced = always up-to-date!  
