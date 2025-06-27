@@ -16,7 +16,7 @@ A web app that lets users **crowdsource free/public WiFi locations** on an inter
 ## 🚀 Setup  
 1. Clone the repo:  
    ```bash  
-   git clone https://github.com/your-username/wifi-spot-mapper.git  
+   git clone https://github.com/rebecca-cousin/crowd-source-wifi-map-app.git 
    ```  
 2. Open `index.html` in a browser (no server needed).  
 
